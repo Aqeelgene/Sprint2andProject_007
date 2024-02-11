@@ -12,6 +12,8 @@ User story Saeeda: As an educator in genomics, I want to teach students the impo
 
 User story Zahra: As a researcher in diabetes I face a number of monogenic diabetes cases which can generate variants of unclassified significance, I want to analyse these variants on a regular basis in order to get them most updated classification of these variants so that I can progress in my research.
 
+User story of Violetta: As a researcher in hypertrophic cardiomyopathy (HCM, a.k.a HOCM), I'm dealing with wide range of genes and variants on daily basis. Therefore, the need of revising dieffernet variants on a regular basis is crucial. It is also important to mention to choose the right transcript for the right phenotype before revising it as some genes may have different transcripts such as SCN5A1 gene. 
+
 All three user stories would essentially need the same program. We used ChatGPT and entered the following information win Laymans terms:
 
 PROMPT FOR CHATGPT I want you to write me code based on the following information
