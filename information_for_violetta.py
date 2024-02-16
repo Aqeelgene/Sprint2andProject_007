@@ -1,4 +1,4 @@
-#Inforamtion for violetta to try and help with the requirements
+#Inforamtion for violetta to try and help with the requirements so that she can at least get the enviroment
 
 anyio==3.6.2
 appnope==0.1.3
