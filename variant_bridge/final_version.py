@@ -1,15 +1,17 @@
-import requests
-import re
-import json
+# Import necessary libraries
+import requests # For making HTTP requests to APIs
+import re  # For regular expression operations
+import json # For parsing and generating JSON data
 
 # Function to fetch transcript ID using gene name
-def fetch_transcript_id(gene_name):
+def fetch_transcript_id(gene_name):   # Construct the URL for the API request using the gene name
     url = f"https://rest.variantvalidator.org/VariantValidator/tools/gene2transcripts_v2/{gene_name}/mane_select/refseq/GRCh37?content-type=text/xml"
     response = requests.get(url)
     if response.status_code != 200:
         print(f"Error fetching data from the server. Status code: {response.status_code}")
         return None
 
+    # Search for the transcript ID in the API response using a regular expression
     match = re.search(r'<reference type="str">(.*?)</reference>', response.text)
     return match.group(1) if match else None
 
@@ -32,7 +34,7 @@ def get_ensembl_vep_data(hg38_id):
 server = "https://rest.variantvalidator.org/VariantValidator/variantvalidator/"
 print("Welcome to VariantBridge!\n\n"
       "Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19), e.g.:\n"
-     "- HGVS: NM_000088.3:c.589G>T\n"
+      "- HGVS: NM_000088.3:c.589G>T\n"
       "- HGVS: NC_000017.10:g.48275363C>A\n"
       "- HGVS: NG_007400.1:g.8638G>T\n"
       "- VCF: 17-50198002-C-A\n"
@@ -41,6 +43,7 @@ print("Welcome to VariantBridge!\n\n"
       "- VCF: chr17:g.50198002C>A\n\n"
       "Please enter your data in one of these formats to proceed with the conversion.")
 
+# User input for the variant
 variant = input("Insert variant:")
 
 # Check if variant starts with 'N'
@@ -53,6 +56,7 @@ else:
         print("No transcript ID found for the given gene name.")
         exit()
 
+# Make a request to the VariantValidator server with the variant and extension
 response = requests.get(f"{server}hg19/{variant}/{ext}")
 if response.status_code == 200:
     hg38_genomic_description = extract_hg38_genomic_description(response.text)
@@ -67,7 +71,7 @@ else:
 
 print(response)
 
-# Json output format
+## Json output format
 decode = response.json()
 print(repr(decode))
 
