@@ -1,3 +1,7 @@
+#This file "Task1_API2" is a follow on from "Task1_API" and was an attempt to create fields to enter the required information.
+# I didn't take this any further
+
+
 import requests
 import re
 import json
