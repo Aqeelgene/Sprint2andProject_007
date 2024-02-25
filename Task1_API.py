@@ -1,8 +1,12 @@
-import requests
-import re
-import json
-from flask import Flask, request, make_response
-from flask_restx import Api, Resource
+#This file Task1_API.py is an attempt to create an API. I tried this as a follow on from Project_task1.1.py. I also added comments to this
+#24th February 2024
+
+
+import requests  # Import the requests library for making HTTP requests
+import re        # Import the re module for regular expressions
+import json      # Import the json module for working with JSON data
+from flask import Flask, request, make_response    # Import necessary modules for creating a Flask web application
+from flask_restx import Api, Resource              # Import modules for creating a RESTful API
 
 # Initialize Flask application and Flask-RESTx API
 app = Flask(__name__)
