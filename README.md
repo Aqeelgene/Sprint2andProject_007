@@ -4,7 +4,7 @@ The information below is transferred from ionpaani
 
 Hello guys!
 
-USER STORIES AHMAD SAEEDA ZAHRA
+USER STORIES AHMAD SAEEDA ZAHRA VIOLETTA
 
 User story Ahmad: As a clinical geneticist , I want to regularly review and revise variants of unclassified significance so that I can provide my patients with a result.
 
