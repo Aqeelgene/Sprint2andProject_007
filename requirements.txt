@@ -1,0 +1,9 @@
+Flask==2.0.1  # Replace with the version you're actually using
+Jinja2==3.0.1  # Dependency of Flask, ensure compatibility
+Werkzeug==2.0.1  # Dependency of Flask, ensure compatibility
+itsdangerous==2.0.1  # Dependency of Flask for security features
+click==8.0.1  # Dependency of Flask for command line utilities
+This is how it should look like: Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+Jinja2==3.0.1  # Flask depends on Jinja2 for templating
+Werkzeug==2.0.1  # Flask depends on Werkzeug for WSGI utilities
