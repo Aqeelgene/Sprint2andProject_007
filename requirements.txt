@@ -1,5 +1,5 @@
-Flask==2.0.1  # Replace with the version you're actually using
-Jinja2==3.0.1  # Dependency of Flask, ensure compatibility
-Werkzeug==2.0.1  # Dependency of Flask, ensure compatibility
-itsdangerous==2.0.1  # Dependency of Flask for security features
-click==8.0.1  # Dependency of Flask for command line utilities
+Flask==2.0.1  
+Jinja2==3.0.1  
+Werkzeug==2.0.1 
+itsdangerous==2.0.1  
+click==8.0.1 
