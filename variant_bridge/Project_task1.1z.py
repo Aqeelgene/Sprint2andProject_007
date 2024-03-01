@@ -1,21 +1,16 @@
-#This is the Project_task1.1.py to which Saeeda added comments on 17 Feb 2024
+"""Purpose of this file is to Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19)"""
 
-
-
-# Import necessary libraries
-import requests # For making HTTP requests to APIs
-import re  # For regular expression operations
-import json # For parsing and generating JSON data
+import requests
+import re
 
 # Function to fetch transcript ID using gene name
-def fetch_transcript_id(gene_name):   # Construct the URL for the API request using the gene name
+def fetch_transcript_id(gene_name):
     url = f"https://rest.variantvalidator.org/VariantValidator/tools/gene2transcripts_v2/{gene_name}/mane_select/refseq/GRCh37?content-type=text/xml"
     response = requests.get(url)
     if response.status_code != 200:
         print(f"Error fetching data from the server. Status code: {response.status_code}")
         return None
 
-    # Search for the transcript ID in the API response using a regular expression
     match = re.search(r'<reference type="str">(.*?)</reference>', response.text)
     return match.group(1) if match else None
 
@@ -37,21 +32,16 @@ def get_ensembl_vep_data(hg38_id):
 # Main code
 server = "https://rest.variantvalidator.org/VariantValidator/variantvalidator/"
 print("Welcome to VariantBridge!\n\n"
-      "Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19)")
+      "Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19), e.g.:\n"
+     "- HGVS: NM_000088.3:c.589G>T\n"
+      "- HGVS: NC_000017.10:g.48275363C>A\n"
+      "- HGVS: NG_007400.1:g.8638G>T\n"
+      "- VCF: 17-50198002-C-A\n"
+      "- VCF: 17:50198002:C:A\n"
+      "- VCF: chr17:50198002C>A\n"
+      "- VCF: chr17:g.50198002C>A\n\n"
+      "Please enter your data in one of these formats to proceed with the conversion.")
 
-# User input for genome build selection
-genome_build = input("Please select the genome build (hg19 or hg38): ")
-if genome_build == "hg19":
-    server += "hg19/"
-elif genome_build == "hg38":
-    server += "hg38/"
-else:
-    print("Invalid genome build selected. Please try again.")
-    exit()
-
-variant = input("Please enter your variant in HGVS or VCF format (hg19): ")
-
-# User input for the variant
 variant = input("Insert variant:")
 
 # Check if variant starts with 'N'
@@ -64,7 +54,6 @@ else:
         print("No transcript ID found for the given gene name.")
         exit()
 
-# Make a request to the VariantValidator server with the variant and extension
 response = requests.get(f"{server}hg19/{variant}/{ext}")
 if response.status_code == 200:
     hg38_genomic_description = extract_hg38_genomic_description(response.text)
@@ -76,19 +65,3 @@ if response.status_code == 200:
         print("No hg38 genomic description found, cannot query Ensembl VEP API.")
 else:
     print(f"Error: Received response code {response.status_code}")
-
-print(response)
-
-## Json output format
-decode = response.json()
-print(repr(decode))
-
-# Write the json to file
-fileName = "output.txt"
-#if saveAnnotations:
-    #fileName = makeFileName("variant")
-
-if fileName:
-    file = open(fileName, "w")
-    file.write(json.dumps(decode, sort_keys=True, indent=2))
-    file.close()

@@ -1,0 +1,112 @@
+{
+  "NM_005239.6:c.190G>A": {
+    "alt_genomic_loci": [],
+    "annotations": {
+      "chromosome": "21",
+      "db_xref": {
+        "CCDS": "CCDS13659.1",
+        "ensemblgene": null,
+        "hgnc": "HGNC:3489",
+        "ncbigene": "2114",
+        "select": "MANE"
+      },
+      "ensembl_select": false,
+      "mane_plus_clinical": false,
+      "mane_select": true,
+      "map": "21q22.2",
+      "note": "ETS proto-oncogene 2, transcription factor",
+      "refseq_select": true,
+      "variant": "1"
+    },
+    "gene_ids": {
+      "ccds_ids": [
+        "CCDS13659"
+      ],
+      "ensembl_gene_id": "ENSG00000157557",
+      "entrez_gene_id": "2114",
+      "hgnc_id": "HGNC:3489",
+      "omim_id": [
+        "164740"
+      ],
+      "ucsc_id": "uc002yxf.4"
+    },
+    "gene_symbol": "ETS2",
+    "genome_context_intronic_sequence": "",
+    "hgvs_lrg_transcript_variant": "",
+    "hgvs_lrg_variant": "",
+    "hgvs_predicted_protein_consequence": {
+      "lrg_slr": "",
+      "lrg_tlr": "",
+      "slr": "NP_005230.1:p.(A64T)",
+      "tlr": "NP_005230.1:p.(Ala64Thr)"
+    },
+    "hgvs_refseqgene_variant": "",
+    "hgvs_transcript_variant": "NM_005239.6:c.190G>A",
+    "primary_assembly_loci": {
+      "grch37": {
+        "hgvs_genomic_description": "NC_000021.8:g.40186202G>A",
+        "vcf": {
+          "alt": "A",
+          "chr": "21",
+          "pos": "40186202",
+          "ref": "G"
+        }
+      },
+      "grch38": {
+        "hgvs_genomic_description": "NC_000021.9:g.38814278G>A",
+        "vcf": {
+          "alt": "A",
+          "chr": "21",
+          "pos": "38814278",
+          "ref": "G"
+        }
+      },
+      "hg19": {
+        "hgvs_genomic_description": "NC_000021.8:g.40186202G>A",
+        "vcf": {
+          "alt": "A",
+          "chr": "chr21",
+          "pos": "40186202",
+          "ref": "G"
+        }
+      },
+      "hg38": {
+        "hgvs_genomic_description": "NC_000021.9:g.38814278G>A",
+        "vcf": {
+          "alt": "A",
+          "chr": "chr21",
+          "pos": "38814278",
+          "ref": "G"
+        }
+      }
+    },
+    "reference_sequence_records": {
+      "protein": "https://www.ncbi.nlm.nih.gov/nuccore/NP_005230.1",
+      "transcript": "https://www.ncbi.nlm.nih.gov/nuccore/NM_005239.6"
+    },
+    "refseqgene_context_intronic_sequence": "",
+    "rna_variant_descriptions": null,
+    "selected_assembly": "hg19",
+    "submitted_variant": "NM_005239.6:c.190G>A",
+    "transcript_description": "Homo sapiens ETS proto-oncogene 2, transcription factor (ETS2), transcript variant 1, mRNA",
+    "validation_warnings": [],
+    "variant_exonic_positions": {
+      "NC_000021.8": {
+        "end_exon": "4",
+        "start_exon": "4"
+      },
+      "NC_000021.9": {
+        "end_exon": "4",
+        "start_exon": "4"
+      }
+    }
+  },
+  "flag": "gene_variant",
+  "metadata": {
+    "variantvalidator_hgvs_version": "2.2.0",
+    "variantvalidator_version": "2.2.1.dev492+g032aa70",
+    "vvdb_version": "vvdb_2023_8",
+    "vvseqrepo_db": "VV_SR_2023_05/master",
+    "vvta_version": "vvta_2023_05"
+  }
+}
