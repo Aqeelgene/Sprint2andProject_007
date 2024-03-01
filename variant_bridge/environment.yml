@@ -1,6 +1,0 @@
-name: variant_bridge
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - python=3.11.7
