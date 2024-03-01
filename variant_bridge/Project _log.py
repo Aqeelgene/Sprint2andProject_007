@@ -1,7 +1,15 @@
-import requests  # imports the requests library
-import json      # import the json module
-import string    # import the string module
+"""This is the project log file"""
+
+import requests
 import re
+import json
+import string
+import logging
+
+# Setup basic logging
+logging.basicConfig(level=logging.DEBUG, filename='variantbridge.log', filemode='w',
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 # Function to sanitize input to use as a valid filename
 def sanitize_filename(input_name):
     valid_chars = f"-_.() {string.ascii_letters}{string.digits}"
@@ -13,7 +21,7 @@ def fetch_transcript_id(gene_name):
     url = f"https://rest.variantvalidator.org/VariantValidator/tools/gene2transcripts_v2/{gene_name}/mane_select/refseq/GRCh37?content-type=text/xml"
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"Error fetching data from the server. Status code: {response.status_code}")
+        logging.error(f"Error fetching data from the server. Status code: {response.status_code}")
         return None
     match = re.search(r'<reference type="str">(.*?)</reference>', response.text)
     return match.group(1) if match else None
@@ -29,15 +37,16 @@ def get_ensembl_vep_data(hg38_id):
     headers = {"Content-Type": "application/json"}
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Error fetching data from Ensembl VEP API. Status code: {response.status_code}")
+        logging.error(f"Error fetching data from Ensembl VEP API. Status code: {response.status_code}")
         return None
     return response.json()
 
 # Main code
 server = "https://rest.variantvalidator.org/VariantValidator/variantvalidator/"
+
 print("Welcome to VariantBridge!\n\n"
       "Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19), e.g.:\n"
-    "- HGVS: NM_000088.3:c.589G>T\n"
+      "- HGVS: NM_000088.3:c.589G>T\n"
       "- HGVS: NC_000017.10:g.48275363C>A\n"
       "- HGVS: NG_007400.1:g.8638G>T\n"
       "- VCF: 17-50198002-C-A\n"
@@ -46,13 +55,10 @@ print("Welcome to VariantBridge!\n\n"
       "- VCF: chr17:g.50198002C>A\n\n"
       "Please enter your data in one of these formats to proceed with the conversion.")
 
-variant = input("Insert variant:")
+variant = input("Insert variant: ")
 
-# Check if variant starts with 'NM_' or 'NC' or 'NG_'
-
+# Check if variant starts with 'NM_' or 'NC_' or 'NG_'
 if variant.startswith(('NM_', 'NC_', 'NG_')):
-
-
     ext = variant.split(':')[0]  # Use part of the variant before the colon
 else:
     gene_name = input("Enter the gene name: ")
@@ -73,18 +79,17 @@ if response.status_code == 200:
 else:
     print(f"Error: Received response code {response.status_code}")
 
-# Json output format
-decode = response.json()
-print(repr(decode))
+# Assuming response handling and logging are implemented here
 
 # Generate file name based on the variant input
 fileName = f"{sanitize_filename(variant)}.txt"
 
-if fileName:
+# Replace this with actual response data handling
+# This is just a placeholder to demonstrate file writing
+if response.status_code == 200:
     with open(fileName, "w") as file:
-        file.write(json.dumps(decode, sort_keys=True, indent=2))
-        file.close()
+        file.write(json.dumps(response.json(), sort_keys=True, indent=2))
 
-
-    print(f"Output written to {fileName}")
-
+    logging.info(f"Output written to {fileName}")
+else:
+    logging.error("Failed to generate a valid file name.")

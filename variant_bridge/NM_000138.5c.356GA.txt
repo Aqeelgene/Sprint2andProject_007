@@ -1,0 +1,112 @@
+{
+  "NM_000138.5:c.356G>A": {
+    "alt_genomic_loci": [],
+    "annotations": {
+      "chromosome": "15",
+      "db_xref": {
+        "CCDS": "CCDS32232.1",
+        "ensemblgene": null,
+        "hgnc": "HGNC:3603",
+        "ncbigene": "2200",
+        "select": "MANE"
+      },
+      "ensembl_select": false,
+      "mane_plus_clinical": false,
+      "mane_select": true,
+      "map": "15q21.1",
+      "note": "fibrillin 1",
+      "refseq_select": true,
+      "variant": "1"
+    },
+    "gene_ids": {
+      "ccds_ids": [
+        "CCDS32232"
+      ],
+      "ensembl_gene_id": "ENSG00000166147",
+      "entrez_gene_id": "2200",
+      "hgnc_id": "HGNC:3603",
+      "omim_id": [
+        "134797"
+      ],
+      "ucsc_id": "uc001zwx.3"
+    },
+    "gene_symbol": "FBN1",
+    "genome_context_intronic_sequence": "",
+    "hgvs_lrg_transcript_variant": "",
+    "hgvs_lrg_variant": "",
+    "hgvs_predicted_protein_consequence": {
+      "lrg_slr": "LRG_778p1:p.(C119Y)",
+      "lrg_tlr": "LRG_778p1:p.(Cys119Tyr)",
+      "slr": "NP_000129.3:p.(C119Y)",
+      "tlr": "NP_000129.3:p.(Cys119Tyr)"
+    },
+    "hgvs_refseqgene_variant": "",
+    "hgvs_transcript_variant": "NM_000138.5:c.356G>A",
+    "primary_assembly_loci": {
+      "grch37": {
+        "hgvs_genomic_description": "NC_000015.9:g.48892422C>T",
+        "vcf": {
+          "alt": "T",
+          "chr": "15",
+          "pos": "48892422",
+          "ref": "C"
+        }
+      },
+      "grch38": {
+        "hgvs_genomic_description": "NC_000015.10:g.48600225C>T",
+        "vcf": {
+          "alt": "T",
+          "chr": "15",
+          "pos": "48600225",
+          "ref": "C"
+        }
+      },
+      "hg19": {
+        "hgvs_genomic_description": "NC_000015.9:g.48892422C>T",
+        "vcf": {
+          "alt": "T",
+          "chr": "chr15",
+          "pos": "48892422",
+          "ref": "C"
+        }
+      },
+      "hg38": {
+        "hgvs_genomic_description": "NC_000015.10:g.48600225C>T",
+        "vcf": {
+          "alt": "T",
+          "chr": "chr15",
+          "pos": "48600225",
+          "ref": "C"
+        }
+      }
+    },
+    "reference_sequence_records": {
+      "protein": "https://www.ncbi.nlm.nih.gov/nuccore/NP_000129.3",
+      "transcript": "https://www.ncbi.nlm.nih.gov/nuccore/NM_000138.5"
+    },
+    "refseqgene_context_intronic_sequence": "",
+    "rna_variant_descriptions": null,
+    "selected_assembly": "hg19",
+    "submitted_variant": "NM_000138.5:c.356G>A",
+    "transcript_description": "Homo sapiens fibrillin 1 (FBN1), transcript variant 1, mRNA",
+    "validation_warnings": [],
+    "variant_exonic_positions": {
+      "NC_000015.10": {
+        "end_exon": "5",
+        "start_exon": "5"
+      },
+      "NC_000015.9": {
+        "end_exon": "5",
+        "start_exon": "5"
+      }
+    }
+  },
+  "flag": "gene_variant",
+  "metadata": {
+    "variantvalidator_hgvs_version": "2.2.0",
+    "variantvalidator_version": "2.2.1.dev492+g032aa70",
+    "vvdb_version": "vvdb_2023_8",
+    "vvseqrepo_db": "VV_SR_2023_05/master",
+    "vvta_version": "vvta_2023_05"
+  }
+}
