@@ -1,0 +1,5 @@
+2024-03-01 00:00:37,219 - DEBUG - Starting new HTTPS connection (1): rest.variantvalidator.org:443
+2024-03-01 00:00:37,957 - DEBUG - https://rest.variantvalidator.org:443 "GET /VariantValidator/variantvalidator/hg19/NM_005239.6:c.190G%3EA/NM_005239.6 HTTP/1.1" 200 3038
+2024-03-01 00:00:37,963 - DEBUG - Starting new HTTPS connection (1): rest.ensembl.org:443
+2024-03-01 00:00:41,850 - DEBUG - https://rest.ensembl.org:443 "GET /vep/human/hgvs/NC_000021.9:g.38814278G%3EA HTTP/1.1" 200 5642
+2024-03-01 00:00:41,853 - INFO - Output written to NM_005239.6c.190GA.txt
