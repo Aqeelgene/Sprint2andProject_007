@@ -1,15 +1,28 @@
+"""This is the project log file"""
+
 import requests
 import re
 import json
+import string
+import logging
+
+# Setup basic logging
+logging.basicConfig(level=logging.DEBUG, filename='variantbridge.log', filemode='w',
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Function to sanitize input to use as a valid filename
+def sanitize_filename(input_name):
+    valid_chars = f"-_.() {string.ascii_letters}{string.digits}"
+    sanitized_name = ''.join(c for c in input_name if c in valid_chars)
+    return sanitized_name.replace(" ", "_")
 
 # Function to fetch transcript ID using gene name
 def fetch_transcript_id(gene_name):
     url = f"https://rest.variantvalidator.org/VariantValidator/tools/gene2transcripts_v2/{gene_name}/mane_select/refseq/GRCh37?content-type=text/xml"
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"Error fetching data from the server. Status code: {response.status_code}")
+        logging.error(f"Error fetching data from the server. Status code: {response.status_code}")
         return None
-
     match = re.search(r'<reference type="str">(.*?)</reference>', response.text)
     return match.group(1) if match else None
 
@@ -24,28 +37,28 @@ def get_ensembl_vep_data(hg38_id):
     headers = {"Content-Type": "application/json"}
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Error fetching data from Ensembl VEP API. Status code: {response.status_code}")
+        logging.error(f"Error fetching data from Ensembl VEP API. Status code: {response.status_code}")
         return None
     return response.json()
 
 # Main code
 server = "https://rest.variantvalidator.org/VariantValidator/variantvalidator/"
+
 print("Welcome to VariantBridge!\n\n"
-      "Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19)")
+      "Convert your genetic variants from hg19 to hg38. Please input the variant in HGVS or VCF format (hg19), e.g.:\n"
+      "- HGVS: NM_000088.3:c.589G>T\n"
+      "- HGVS: NC_000017.10:g.48275363C>A\n"
+      "- HGVS: NG_007400.1:g.8638G>T\n"
+      "- VCF: 17-50198002-C-A\n"
+      "- VCF: 17:50198002:C:A\n"
+      "- VCF: chr17:50198002C>A\n"
+      "- VCF: chr17:g.50198002C>A\n\n"
+      "Please enter your data in one of these formats to proceed with the conversion.")
 
-genome_build = input("Please select the genome build (hg19 or hg38): ")
-if genome_build == "hg19":
-    server += "hg19/"
-elif genome_build == "hg38":
-    server += "hg38/"
-else:
-    print("Invalid genome build selected. Please try again.")
-    exit()
+variant = input("Insert variant: ")
 
-variant = input("Please enter your variant in HGVS or VCF format (hg19): ")
-
-# Check if variant starts with 'N'
-if variant.startswith('N'):
+# Check if variant starts with 'NM_' or 'NC_' or 'NG_'
+if variant.startswith(('NM_', 'NC_', 'NG_')):
     ext = variant.split(':')[0]  # Use part of the variant before the colon
 else:
     gene_name = input("Enter the gene name: ")
@@ -66,18 +79,17 @@ if response.status_code == 200:
 else:
     print(f"Error: Received response code {response.status_code}")
 
-print(response)
+# Assuming response handling and logging are implemented here
 
-# Json output format
-decode = response.json()
-print(repr(decode))
+# Generate file name based on the variant input
+fileName = f"{sanitize_filename(variant)}.txt"
 
-# Write the json to file
-fileName = "output.txt"
-#if saveAnnotations:
-    #fileName = makeFileName("variant")
+# Replace this with actual response data handling
+# This is just a placeholder to demonstrate file writing
+if response.status_code == 200:
+    with open(fileName, "w") as file:
+        file.write(json.dumps(response.json(), sort_keys=True, indent=2))
 
-if fileName:
-    file = open(fileName, "w")
-    file.write(json.dumps(decode, sort_keys=True, indent=2))
-    file.close()
+    logging.info(f"Output written to {fileName}")
+else:
+    logging.error("Failed to generate a valid file name.")
