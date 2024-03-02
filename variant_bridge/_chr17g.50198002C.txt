@@ -1,0 +1,39 @@
+{
+  "flag": "warning",
+  "metadata": {
+    "variantvalidator_hgvs_version": "2.2.0",
+    "variantvalidator_version": "2.2.1.dev492+g032aa70",
+    "vvdb_version": "vvdb_2023_8",
+    "vvseqrepo_db": "VV_SR_2023_05/master",
+    "vvta_version": "vvta_2023_05"
+  },
+  "validation_warning_1": {
+    "alt_genomic_loci": [],
+    "annotations": {},
+    "gene_ids": {},
+    "gene_symbol": "",
+    "genome_context_intronic_sequence": "",
+    "hgvs_lrg_transcript_variant": "",
+    "hgvs_lrg_variant": "",
+    "hgvs_predicted_protein_consequence": {
+      "lrg_slr": "",
+      "lrg_tlr": "",
+      "slr": "",
+      "tlr": ""
+    },
+    "hgvs_refseqgene_variant": "",
+    "hgvs_transcript_variant": "",
+    "primary_assembly_loci": {},
+    "reference_sequence_records": "",
+    "refseqgene_context_intronic_sequence": "",
+    "rna_variant_descriptions": null,
+    "selected_assembly": "hg19",
+    "submitted_variant": ": chr17:g.50198002C>",
+    "transcript_description": "",
+    "validation_warnings": [
+      "Whitespace removed from variant description :chr17:g.50198002C>",
+      "is not part of genome build hg19"
+    ],
+    "variant_exonic_positions": null
+  }
+}
