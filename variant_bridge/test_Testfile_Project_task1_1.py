@@ -4,6 +4,8 @@ import requests  # imports the requests library
 import json      # import the json module
 import string    # import the string module
 import re
+# Corrected import statement
+from Testfile_Project_task1_1 import fetch_transcript_id, extract_hg38_genomic_description, get_ensembl_vep_data
 
 # Function to sanitize input to use as a valid filename
 def sanitize_filename(input_name):
