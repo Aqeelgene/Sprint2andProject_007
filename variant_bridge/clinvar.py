@@ -90,6 +90,7 @@ def extract_id(data: dict):
 
 def extract_data(data: dict, variant_id: str):
     """Extract data of the variant id from the clinvar reponse."""
+
     result = data.get('result', {}).get(variant_id, {})
     pathogenicity = result.get(
         'germline_classification', {}
@@ -130,7 +131,7 @@ if __name__ == '__main__':
     # Extract variant ID
     variant_id = extract_id(esearch_response)
     # Generate the esummary URL
-    esummary_url = generate_url(hgvs, request_type='esummary')
+    esummary_url = generate_url(variant_id, request_type='esummary')
     # Make the request
     esummary_response = fetch_clinvar(esummary_url)
     # Extract data
