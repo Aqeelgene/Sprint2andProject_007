@@ -1,7 +1,7 @@
 import json
+import string
 import sys
 import urllib.parse as urlparser
-from pathlib import Path
 
 import requests
 
@@ -46,7 +46,7 @@ def generate_url(search_param: str, request_type: str='esearch'):
         sp = {'id': f'{search_param}'}
     else:
         print('ERROR: Allowed request types are `esearch` and `esummary`.')
-        sys.sxit(1)
+        sys.exit(1)
 
     query_params.update(sp)
 
@@ -71,7 +71,7 @@ def fetch_clinvar(url: str):
         print(
             'Something is wrong with your request.\n',
             f'Status code: {response.status_code}.\n',
-            f'Errors: {response.errors}.'
+            f'Errors: {response.json()}.'
         )
         sys.exit(1)
 
@@ -80,7 +80,6 @@ def fetch_clinvar(url: str):
 
 def extract_id(data: dict):
     """Extract variant id from the clinvar reponse."""
-    #import pdb;pdb.set_trace()
     variant_id = data.get('esearchresult', {}).get('idlist', [''])[0]
     if variant_id:
         return variant_id
@@ -89,7 +88,7 @@ def extract_id(data: dict):
     sys.exit(1)
 
 
-def extract_data(data: dict, variant_id: int):
+def extract_data(data: dict, variant_id: str):
     """Extract data of the variant id from the clinvar reponse."""
     result = data.get('result', {}).get(variant_id, {})
     pathogenicity = result.get(
@@ -100,7 +99,7 @@ def extract_data(data: dict, variant_id: int):
     return pathogenicity
 
 
-def format_data(hgvs: str, variant_id: int, pathogenicity: str):
+def format_data(hgvs: str, variant_id: str, pathogenicity: str):
     return {
         'HGVS': hgvs,
         'variant_id': variant_id,
@@ -135,7 +134,7 @@ if __name__ == '__main__':
     # Make the request
     esummary_response = fetch_clinvar(esummary_url)
     # Extract data
-    pathogenicity = extract_data(esummary_response)
+    pathogenicity = extract_data(esummary_response, variant_id)
     # Format extracted data
     data = format_data(hgvs, variant_id, pathogenicity)
     # Save the data to file
