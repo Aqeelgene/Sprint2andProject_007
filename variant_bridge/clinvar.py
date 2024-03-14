@@ -28,14 +28,13 @@ def generate_url(search_param: str, request_type: str='esearch'):
 
     :search_param str: User's input of the variant NM-number.
     :request_type str: Defines the type of tool to be used for the search.
-
     The two types used are `esearch` and `esummary`. Defaults to `esearch`.
 
     Example URL's:
     https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=clinvar&term=%22NG_007400.1%3Ag.8638G%3ET%22&retmode=json
     https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=clinvar&id=425635&retmode=json
     """
-    # Make a request to the VariantValidator server with the variant and extension
+    # Make a request to the ClinVar server
     query_params = {
         'db': 'clinvar',
         'retmode': 'json',
@@ -71,7 +70,6 @@ def fetch_clinvar(url: str):
         print(
             'Something is wrong with your request.\n',
             f'Status code: {response.status_code}.\n',
-            f'Errors: {response.json()}.'
         )
         sys.exit(1)
 
@@ -79,7 +77,7 @@ def fetch_clinvar(url: str):
 
 
 def extract_id(data: dict):
-    """Extract variant id from the clinvar reponse."""
+    """Extract variant id from the clinvar response."""
     variant_id = data.get('esearchresult', {}).get('idlist', [''])[0]
     if variant_id:
         return variant_id
@@ -89,7 +87,7 @@ def extract_id(data: dict):
 
 
 def extract_data(data: dict, variant_id: str):
-    """Extract data of the variant id from the clinvar reponse."""
+    """Extract data of the variant id from the clinvar response."""
 
     result = data.get('result', {}).get(variant_id, {})
     pathogenicity = result.get(
