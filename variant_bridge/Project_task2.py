@@ -2,6 +2,40 @@ import requests  # imports the requests library
 import json      # import the json module
 import string    # import the string module
 import re
+def get_variant_input():
+    """
+    This function should prompt the user to input the genetic variant data.
+    """
+    # Placeholder implementation
+    pass
+
+def fetch_transcript_id(gene_name):
+    """
+    This function should fetch the transcript ID for the given gene name.
+    """
+    # Placeholder implementation
+    pass
+
+def extract_hg38_genomic_description(response_text):
+    """
+    This function should extract the hg38 genomic description from the response text.
+    """
+    # Placeholder implementation
+    pass
+
+def get_ensembl_vep_data(hg38_id):
+    """
+    This function should retrieve Ensembl VEP data for the given hg38 ID.
+    """
+    # Placeholder implementation
+    pass
+
+def sanitize_filename(filename):
+    """
+    This function should sanitize the filename by removing special characters.
+    """
+    # Placeholder implementation
+    pass
 # Function to sanitize input to use as a valid filename
 def sanitize_filename(input_name):
     valid_chars = f"-_.() {string.ascii_letters}{string.digits}"
