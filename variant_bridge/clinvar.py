@@ -7,7 +7,6 @@ import requests
 import pandas as pd
 
 
-
 def cli_input():
     """Read user input.
 

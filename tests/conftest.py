@@ -123,4 +123,5 @@ def final_data():
         'HGVS': 'hgvs',
         'variant_id': 'variant_id',
         'pathogenicity': 'pathogenicity',
+        'esummary_response': 'esummary_response',
     }

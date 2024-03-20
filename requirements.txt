@@ -50,6 +50,8 @@ markupsafe==2.1.5
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
+mock==5.1.0
+    # via -r requirements.in
 numpy==1.26.4
     # via
     #   altair

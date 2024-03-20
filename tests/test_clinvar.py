@@ -2,22 +2,31 @@ import builtins
 
 import mock
 import pytest
+import streamlit
 
 from variant_bridge import clinvar
 
 
-class TestTask3:
+class Testclinvar:
 
     @staticmethod
     def test_cli_input():
         # Mock the built-in `input` function
         with mock.patch.object(
-            builtins,
-            'input',
-            lambda _: 'NM_000088.3:c.589G>T',
+            streamlit,
+            'text_input',
+            lambda _: (
+                'NM_000088.3:c.589G>T, '
+                'NC_000017.10:g.48275363C>A, '
+                'NG_007400.1:g.8638G>T'
+            ),
         ):
             # Assert the return value
-            assert clinvar.cli_input() == 'NM_000088.3:c.589G>T'
+            assert clinvar.cli_input() == [
+                'NM_000088.3:c.589G>T',
+                'NC_000017.10:g.48275363C>A',
+                'NG_007400.1:g.8638G>T',
+            ]
 
     @pytest.mark.parametrize(
         'user_input, request_type, expected_url',
@@ -77,5 +86,10 @@ class TestTask3:
 
     @staticmethod
     def test_format_data(final_data):
-        data = clinvar.format_data('hgvs', 'variant_id', 'pathogenicity')
+        data = clinvar.format_data(
+            'hgvs',
+            'variant_id',
+            'pathogenicity',
+            'esummary_response',
+        )
         assert data == final_data
