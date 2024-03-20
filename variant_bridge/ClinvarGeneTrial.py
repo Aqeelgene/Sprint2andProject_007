@@ -187,6 +187,7 @@ if __name__ == "__main__":
     summary_data = []
     for data in variant_data:
         gene_symbol = data["esummary_response"]["result"][data["variant_id"]]["genes"][0]["symbol"]
+
         summary_data.append({
             "HGVS": data["HGVS"],
             "Variant ID": data["variant_id"],
